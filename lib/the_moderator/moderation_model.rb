@@ -1,12 +1,12 @@
+require 'active_support/concern'
+
 module TheModerator
   module ModerationModel
-    def self.included(base)
-      base.send :extend, ClassMethods
+    extend ActiveSupport::Concern
 
-      base.class_eval do
-        belongs_to :moderatable, polymorphic: true
-        serialize :data
-      end
+    included do
+      belongs_to :moderatable, polymorphic: true
+      serialize :data
     end
 
     module ClassMethods

@@ -1,7 +1,14 @@
+require 'active_support/concern'
+
 module TheModerator
   module Model
-    def self.included(base)
-      base.has_many :moderations, as: :moderatable, dependent: :destroy
+    extend ActiveSupport::Concern
+
+    included do
+      has_many :moderations, as: :moderatable, dependent: :destroy
+    end
+
+    module ClassMethods
     end
 
     def moderate(*moderated_attributes)
