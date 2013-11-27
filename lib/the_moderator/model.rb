@@ -43,11 +43,26 @@ module TheModerator
 
     def moderate_association(assoc, moderated_attributes)
       assoc_fields = {}
-      send(assoc).each do |resource|
-        if respond_to?("#{assoc}_attributes=")
-          data = resource.moderation_data(*moderated_attributes)
-          assoc_fields[resource.id] = data.merge(id: resource.id) unless data.empty?
+      objects = send(assoc)
+
+      if respond_to?("#{assoc}_attributes=")
+        if objects.is_a?(Array)
+          assoc_fields = moderate_has_many_association(objects, moderated_attributes)
+        else
+          data = objects.moderation_data(*moderated_attributes)
+          assoc_fields = data.merge(id: objects.id) unless data.empty?
         end
+      end
+
+      assoc_fields
+    end
+
+    def moderate_has_many_association(objects, moderated_attributes)
+      assoc_fields = {}
+
+      objects.each do |resource|
+        data = resource.moderation_data(*moderated_attributes)
+        assoc_fields[resource.id] = data.merge(id: resource.id) unless data.empty?
       end
 
       assoc_fields
