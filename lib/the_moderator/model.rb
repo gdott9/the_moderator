@@ -9,6 +9,13 @@ module TheModerator
       moderations.build(data: {attributes: data}) unless data.empty?
     end
 
+    def moderated?(attr_name)
+      moderations.each do |moderation|
+        return true if moderation.include?(attr_name)
+      end
+      false
+    end
+
     protected
 
     def moderation_data(*moderated_attributes)

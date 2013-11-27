@@ -32,5 +32,29 @@ module TheModerator
       preview.attributes = data
       preview.freeze
     end
+
+    def parsed_data
+      data
+    end
+
+    def include?(attribute)
+      include_attribute?(attribute, data[:attributes])
+    end
+
+    private
+
+    def include_attribute?(attribute, attr_data)
+      return false if attr_data.nil?
+      if attribute.is_a?(Hash)
+        include_assoc?(attribute, attr_data)
+      else
+        attr_data.keys.include?(attribute)
+      end
+    end
+
+    def include_assoc?(attribute, assoc_data)
+      include_attribute?(attribute.first.last,
+                         assoc_data[attribute.first.first])
+    end
   end
 end
