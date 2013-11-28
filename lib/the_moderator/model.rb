@@ -23,6 +23,11 @@ module TheModerator
       false
     end
 
+    def moderated_fields_for(assoc)
+      moderations.map { |m| m.moderated_fields_for(assoc) }
+                 .inject(&:|)
+    end
+
     protected
 
     def moderation_data(*moderated_attributes)

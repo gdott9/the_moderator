@@ -41,6 +41,10 @@ module TheModerator
       include_attribute?(attribute, data[:attributes])
     end
 
+    def moderated_fields_for(assoc)
+      (data[:attributes][assoc].try(:keys) || []) - [:id]
+    end
+
     private
 
     def include_attribute?(attribute, attr_data)
