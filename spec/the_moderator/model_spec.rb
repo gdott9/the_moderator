@@ -8,7 +8,7 @@ describe TheModerator::Model do
       subject.moderate(:name)
 
       expect(subject.moderations).to have(1).moderation
-      expect(subject.name).to eq(nil)
+      expect(subject.name).to be_nil
       expect(subject.content).to eq('Content')
     end
   end
