@@ -3,6 +3,7 @@ class CreateModerations < ActiveRecord::Migration
     create_table "moderations" do |t|
       t.references :moderatable, polymorphic: true
       t.text :data, :null => false
+      t.text :data_display, :null => false
 
       t.timestamps
     end

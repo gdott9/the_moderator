@@ -7,6 +7,7 @@ module TheModerator
     included do
       belongs_to :moderatable, polymorphic: true
       serialize :data
+      serialize :data_display
     end
 
     module ClassMethods
@@ -35,6 +36,10 @@ module TheModerator
 
     def parsed_data
       data
+    end
+
+    def parsed_data_display
+      data_display
     end
 
     def include?(attribute)
