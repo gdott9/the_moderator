@@ -14,7 +14,7 @@ module TheModerator
     def moderate(*moderated_attributes)
       data = moderation_data(*moderated_attributes)
       moderations.build(data: {attributes: data[:data]},
-                        data_display: data[:data_display]) unless data.empty?
+                        data_display: data[:data_display]) unless data[:data].empty?
     end
 
     def moderated?(attr_name)
