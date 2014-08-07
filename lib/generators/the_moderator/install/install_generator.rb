@@ -7,7 +7,7 @@ class TheModerator::InstallGenerator < Rails::Generators::Base
     template 'moderation.rb', File.join('app', 'models', 'moderation.rb')
   end
 
-  def create_migration
+  def create_migration_file
     migration_template 'migration.rb', 'db/migrate/create_moderations.rb'
   end
 
