@@ -1,6 +1,6 @@
 # TheModerator
 
-TODO: Write a gem description
+Moderate fields before their insertion in the database by serializing and saving them into a separate 'moderations' table.
 
 ## Installation
 
@@ -16,9 +16,51 @@ Or install it yourself as:
 
     $ gem install the_moderator
 
+Then use the generator for the migration and the basic `Moderation` model:
+
+    $ rails generate the_moderator:install
+
 ## Usage
 
-TODO: Write usage instructions here
+To use `TheModerator`, you need to include `TheModerator::Model` in the models you want to moderate.
+
+```ruby
+class Article
+  include TheModerator::Model
+end
+```
+
+The `Moderation` model added by the genenrator is used to access the moderations.
+
+### Moderate attributes
+
+This gem adds 3 methods to your models.
+
+- `moderate`
+- `moderated?`
+- `moderated_fields_for(assoc)`
+
+### Manage moderations
+
+To list pending moderations, you can use the `Moderation` model
+
+```ruby
+Moderation.all
+```
+
+You can access the moderations for a specific object with
+
+```ruby
+post = Post.last
+post.moderations
+```
+
+A `Moderation` instance has 4 methods:
+- `moderation.data` returns a hash of the moderated attributes
+- `moderation.data_display` returns a user-friendly hash to display the moderated attributes
+- `moderation.preview`
+- `moderation.accept` modifies the moderated object with the specified attributes and saves it
+- `moderation.discard` destroys the moderation
 
 ## Contributing
 
