@@ -22,6 +22,7 @@ ActiveRecord::Schema.define do
     t.integer  :moderatable_id
     t.string   :moderatable_type
     t.text     :data
+    t.text :data_display
     t.timestamps
   end
 end
