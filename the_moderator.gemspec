@@ -7,10 +7,10 @@ Gem::Specification.new do |spec|
   spec.name          = "the_moderator"
   spec.version       = TheModerator::VERSION
   spec.authors       = ["Guillaume DOTT"]
-  spec.email         = ["guillaume.dott@lafourmi-immo.com"]
+  spec.email         = ["guillaume+github@dott.fr"]
   spec.description   = %q{Moderate fields of a model or its associations}
   spec.summary       = %q{Moderate fields before their insertion in the database by serializing and saving them into a separate 'moderations' table.}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/gdott9/the_moderator"
   spec.license       = "AGPL"
 
   spec.files         = `git ls-files`.split($/)
