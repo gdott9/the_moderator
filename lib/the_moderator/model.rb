@@ -69,6 +69,7 @@ module TheModerator
           assoc_fields = data[:data]
           assoc_fields_display = data[:data_display]
         else
+          objects.class.send(:include, TheModerator::Model) unless objects.respond_to?(:moderation_data)
           data = objects.moderation_data(*moderated_attributes)
           assoc_fields = data[:data].merge(id: objects.id) unless data[:data].empty?
           assoc_fields_display = data[:data_display] unless data[:data_display].empty?
@@ -83,6 +84,7 @@ module TheModerator
       tab = []
 
       objects.each do |resource|
+        resource.class.send(:include, TheModerator::Model) unless resource.respond_to?(:moderation_data)
         data = resource.moderation_data(*moderated_attributes)
 
         assoc_fields[resource.id] = data[:data].merge(id: resource.id) unless data[:data].empty?
