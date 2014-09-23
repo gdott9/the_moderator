@@ -1,5 +1,7 @@
 # TheModerator
 
+[![Build Status](https://travis-ci.org/gdott9/the_moderator.svg?branch=master)](https://travis-ci.org/gdott9/the_moderator)
+
 Moderate fields before their insertion in the database by serializing and saving them into a separate 'moderations' table.
 
 ## Installation
