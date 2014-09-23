@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.description   = %q{Moderate fields of a model or its associations}
   spec.summary       = %q{Moderate fields before their insertion in the database by serializing and saving them into a separate 'moderations' table.}
   spec.homepage      = "https://github.com/gdott9/the_moderator"
-  spec.license       = "AGPL"
+  spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }

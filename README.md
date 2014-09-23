@@ -69,7 +69,3 @@ A `Moderation` instance has 4 methods:
 3. Commit your changes (`git commit -am 'Add some feature'`)
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
-
-## License
-
-TheModerator is released under AGPLv3 license. Copyright (c) 2013 La Fourmi Immo
