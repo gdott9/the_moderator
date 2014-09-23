@@ -26,6 +26,20 @@ describe TheModerator::Model do
         .to include(page_attributes: {name: 'name', id: category.page.id})
       expect(category.page.name).to be_nil
     end
+
+    it 'moderates has_many associations' do
+      page = Page.new(name: 'page')
+      page.save
+      link = page.links.create
+
+      page.attributes = {links_attributes: [{id: link.id, name: 'link'}]}
+      page.moderate(links: [:name])
+
+      expect(page.moderations).to have(1).moderation
+      expect(page.moderations.first.data[:attributes])
+        .to include(links_attributes: {link.id => {name: 'link', id: link.id}})
+      expect(link.name).to be_nil
+    end
   end
 
   describe '#moderated?' do
