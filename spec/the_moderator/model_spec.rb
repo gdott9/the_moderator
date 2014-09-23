@@ -6,7 +6,7 @@ describe TheModerator::Model do
       page = Page.new(name: 'Name', content: 'Content')
       page.moderate(:name)
 
-      expect(page.moderations).to have(1).moderation
+      expect(page.moderations.size).to eq(1)
       expect(page.moderations.first.data[:attributes]).to include(name: 'Name')
       expect(page.name).to be_nil
       expect(page.content).to eq('Content')
@@ -21,7 +21,7 @@ describe TheModerator::Model do
         name: 'name', content: 'content', id: category.page.id}}
       category.moderate(page: :name)
 
-      expect(category.moderations).to have(1).moderation
+      expect(category.moderations.size).to eq(1)
       expect(category.moderations.first.data[:attributes])
         .to include(page_attributes: {name: 'name', id: category.page.id})
       expect(category.page.name).to be_nil
@@ -35,7 +35,7 @@ describe TheModerator::Model do
       page.attributes = {links_attributes: [{id: link.id, name: 'link'}]}
       page.moderate(links: [:name])
 
-      expect(page.moderations).to have(1).moderation
+      expect(page.moderations.size).to eq(1)
       expect(page.moderations.first.data[:attributes])
         .to include(links_attributes: {link.id => {name: 'link', id: link.id}})
       expect(link.name).to be_nil
@@ -47,8 +47,8 @@ describe TheModerator::Model do
       page = Page.new(name: 'Name', content: 'Content')
       page.moderate(:name)
 
-      expect(page.moderated?(:name)).to be_true
-      expect(page.moderated?(:content)).to be_false
+      expect(page.moderated?(:name)).to be true
+      expect(page.moderated?(:content)).to be false
     end
   end
 end

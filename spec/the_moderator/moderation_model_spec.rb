@@ -15,7 +15,7 @@ describe TheModerator::ModerationModel do
       subject.accept
 
       expect(subject.moderatable.name).to eq('Name')
-      expect(subject.destroyed?).to be_true
+      expect(subject.destroyed?).to be true
     end
   end
 
@@ -25,7 +25,7 @@ describe TheModerator::ModerationModel do
       subject.discard
 
       expect(subject.moderatable.name).to be_nil
-      expect(subject.destroyed?).to be_true
+      expect(subject.destroyed?).to be true
     end
   end
 
@@ -34,15 +34,15 @@ describe TheModerator::ModerationModel do
       expect(subject.moderatable.name).to be_nil
       preview = subject.preview
 
-      expect(preview.frozen?).to be_true
+      expect(preview.frozen?).to be true
       expect(preview.name).to eq('Name')
     end
   end
 
   describe '#include?' do
     it 'includes name' do
-      expect(subject.include?(:name)).to be_true
-      expect(subject.include?(:content)).to be_false
+      expect(subject.include?(:name)).to be true
+      expect(subject.include?(:content)).to be false
     end
   end
 end
