@@ -64,7 +64,7 @@ module TheModerator
       objects = send(assoc)
 
       if respond_to?("#{assoc}_attributes=")
-        if objects.is_a?(Array)
+        if objects.is_a?(Array) || objects.is_a?(ActiveRecord::Associations::CollectionProxy)
           data = moderate_has_many_association(objects, moderated_attributes)
           assoc_fields = data[:data]
           assoc_fields_display = data[:data_display]
