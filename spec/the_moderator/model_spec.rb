@@ -14,7 +14,7 @@ describe TheModerator::Model do
 
     it 'moderates association fields' do
       category = Category.new(name: 'category')
-      category.create_page
+      category.build_page
       category.save
 
       category.attributes = {page_attributes: {
