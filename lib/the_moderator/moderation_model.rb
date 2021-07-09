@@ -16,7 +16,7 @@ module TheModerator
     def accept
       self.class.transaction do
         destroy
-        moderatable.update_attributes(data)
+        moderatable.update(data)
       end
     end
 
