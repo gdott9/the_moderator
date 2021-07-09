@@ -16,4 +16,5 @@ spec/reports
 test/tmp
 test/version_tmp
 tmp
+vendor/bundle
 *.s[a-w][a-z]
