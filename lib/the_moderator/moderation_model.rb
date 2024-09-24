@@ -6,8 +6,8 @@ module TheModerator
 
     included do
       belongs_to :moderatable, polymorphic: true
-      serialize :data
-      serialize :data_display
+      serialize :data, coder: YAML
+      serialize :data_display, coder: YAML
     end
 
     module ClassMethods
